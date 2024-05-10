@@ -21,7 +21,7 @@ export default function Home() {
               <p className="mt-5 text-lg text-balance text-center max-w-prose md:text-wrap lg:pr-10 lg:text-left">
                 Capture your favourite memories with your own,{" "}
                 <span className="font-semibold">one-of-one</span> phone case.
-                CaseBrand allows you to protect your memories, not just your
+                CaseCobra allows you to protect your memories, not just your
                 phone.
               </p>
 
@@ -33,7 +33,7 @@ export default function Home() {
                   </li>
                   <li className="flex gap-1.5 items-center text-left">
                     <Check className="h-5 w-5 shrink-0 text-green-600" />5 year
-                    print grarantee
+                    print guarantee
                   </li>
                   <li className="flex gap-1.5 items-center text-left">
                     <Check className="h-5 w-5 shrink-0 text-green-600" />
