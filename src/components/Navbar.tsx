@@ -2,10 +2,12 @@ import Link from "next/link";
 import MaxWidthWrapper from "./MaxWidthWrapper";
 import { buttonVariants } from "./ui/button";
 import { ArrowRight } from "lucide-react";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 
-const Navbar = () => {
-  const user = undefined;
-  const isAdmin = false;
+const Navbar = async () => {
+  const { getUser } = getKindeServerSession();
+  const user = await getUser();
+  const isAdmin = user?.email === process.env.ADMIN_EMAIL as string;
   return (
     <nav className="sticky h-14 z-[100] w-full inset-x-0 top-0 border-b border-gray-200 bg-white/75 backdrop-blur-lg transition-all">
       <MaxWidthWrapper>
@@ -25,24 +27,30 @@ const Navbar = () => {
                 >
                   Sign Out
                 </Link>
-                {isAdmin ? (<Link
-                  href="/api/auth/logout"
-                  className={buttonVariants({
-                    size: "sm",
-                    variant: "ghost",
-                  })}
-                >Dashboard ✨</Link>) : null}
+                {isAdmin ? (
+                  <Link
+                    href="/dashboard"
+                    className={buttonVariants({
+                      size: "sm",
+                      variant: "ghost",
+                    })}
+                  >
+                    Dashboard ✨
+                  </Link>
+                ) : null}
                 <Link
                   href="/configure/upload"
                   className={buttonVariants({
                     size: "sm",
-                    className: "hidden items-center gap-1 sm:flex"
+                    className: "hidden items-center gap-1 sm:flex",
                   })}
-                >Create case
-                <ArrowRight className="ml-1.5 w-5 h-5"/></Link>
+                >
+                  Create case
+                  <ArrowRight className="ml-1.5 w-5 h-5" />
+                </Link>
               </>
             ) : (
-                <>
+              <>
                 <Link
                   href="/api/auth/register"
                   className={buttonVariants({
@@ -58,8 +66,10 @@ const Navbar = () => {
                     size: "sm",
                     variant: "ghost",
                   })}
-                >Login
-                <ArrowRight className="ml-1.5 w-5 h-5"/></Link>
+                >
+                  Login
+                </Link>
+                <div className="h-8 w-px bg-zinc-200 sm:block"></div>
               </>
             )}
           </div>
