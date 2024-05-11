@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { HTMLAttributes } from "react";
 
 interface PhoneProps extends HTMLAttributes<HTMLDivElement>{
-    imgSrc: String
+    imgSrc: string
     dark?: boolean
 }
 
